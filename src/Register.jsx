@@ -33,7 +33,7 @@ function Register() {
 
    try {
   const API_URL = import.meta.env.VITE_API_BASE_URL;
-  const res = await axios.post(`${API_URL}/api/v1/users/register`, formData);
+  const res = await axios.post(`${API_URL}api/v1/users/register`, formData);
   
   console.log('Registered:', res.data);
   console.log(res);
