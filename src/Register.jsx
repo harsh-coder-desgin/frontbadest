@@ -31,16 +31,19 @@ function Register() {
     formData.append('avatar', form.avatar)
     if (form.coverImage) formData.append('coverImage', form.coverImage)
 
-    try {
-      const res = await axios.post(`${import.meta.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/users/register`, formData)
-      console.log('Registered:', res.data)
-      console.log(res);
-      
-      alert(res.data.message || 'Registered successfully')
-    } catch (err) {
-      console.error('Registration failed', err)
-    }
+   try {
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+  const res = await axios.post(`${API_URL}/api/v1/users/register`, formData);
+  
+  console.log('Registered:', res.data);
+  console.log(res);
+  console.log(API_URL, "qqq");
+
+  alert(res.data.message || 'Registered successfully');
+  } catch (err) {
+  console.error('Registration failed', err);
   }
+}
 
   return (
     <div style={{ maxWidth: 500, margin: 'auto', padding: 20 }}>
