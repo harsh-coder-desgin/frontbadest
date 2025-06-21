@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 function Register() {
@@ -44,7 +44,20 @@ function Register() {
   console.error('Registration failed', err);
   }
 }
+useEffect(() => {
+    const pingBackend = async () => {
+      try {
+        const API_URL = import.meta.env.VITE_API_BASE_URL;
+        const res = await axios.get(`${API_URL}/api/v1/users/ping`);
+        console.log("✅ Ping Success:", res.data);
+        console.log(res);
+        } catch (err) {
+        console.error("❌ Ping failed:", err.message);
+      }
+    };
 
+    pingBackend();
+  }, []);
   return (
     <div style={{ maxWidth: 500, margin: 'auto', padding: 20 }}>
       <h2>Register</h2>
